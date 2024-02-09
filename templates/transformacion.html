@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}Cargar y Transformar Reporte de tipo de gasto Excel{% endblock %}
+
+{% block content %}
+<!-- Section: Cargar y Transformar Archivo Excel -->
+<section class="mb-4">
+  <div class="card">
+      <div class="card-header py-3 text-center">
+          <h5 class="mb-0"><strong>Reporte de Tipo de Gasto</strong></h5>
+      </div>
+      <div class="card-body">
+          <form action="{{ url_for('transformacion') }}" method="post" enctype="multipart/form-data" class="text-center">
+              <div class="file-field">
+                  <div class="btn btn-primary btn-sm float-left">
+                      <span>Seleccionar archivo</span>
+                      <input type="file" name="file">
+                  </div>
+                  <div class="file-path-wrapper">
+                      <input class="file-path validate" type="text" placeholder="Sube tu archivo Excel">
+                  </div>
+              </div>
+              <button type="submit" id="upload-btn" class="btn btn-success my-4">Procesar</button>
+          </form>
+
+          {% if download_link %}
+          <div class="text-center mt-4">
+              <a href="{{ download_link }}" class="btn btn-primary">Descargar archivo terminado</a>
+          </div>
+          {% endif %}
+      </div>
+  </div>
+</section>
+<!-- Section: de ejecución del script app.py -->
+
+<!-- Sección de consola de ejecución -->
+<section class="mb-4">
+  <div class="card">
+      <div class="card-header py-3 text-center">
+          <h5 class="mb-0"><strong>Consola de Ejecución</strong></h5>
+      </div>
+      <div class="card-body bg-dark text-white" style="height: 200px; overflow-y: auto;">
+          <pre id="console-log"></pre>
+      </div>
+  </div>
+</section>
+
+<!-- Aquí termina el bloque de contenido específico de transformacion.html -->
+{% endblock %}

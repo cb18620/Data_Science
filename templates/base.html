@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>{% block title %}Transformación de Archivos Excel{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+
+    <!-- Google Fonts Roboto -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" />
+    <!-- MDB -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/mdb.min.css') }}" />
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js" integrity="sha512-d9xgZrVZpmmQlfonhQUvTR7lMPtO7NkZMkA0ABN3PHCbKA5nqylQ/yWlFAyY6hYgdF1Qh6nYiuADWwKB4C2WSw=="
+      crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body>
+  <!--Main Navigation-->
+  <header>
+    <!-- Sidebar -->
+    <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
+      <div class="position-sticky">
+        <div class="list-group list-group-flush mx-3 mt-4">
+
+          <a href="{{ url_for('dashboard') }}" class="list-group-item list-group-item-action py-2" aria-current="true">
+            <i class="fas fa-home fa-fw me-3"></i><span>Dashboard</span>
+          </a>
+          <a href="{{ url_for('transformacion') }}" class="list-group-item list-group-item-action py-2" aria-current="true">
+            <i class="fas fa-home fa-fw me-3"></i><span>Tipo de Gasto</span>
+          </a>
+          <a href="{{ url_for('otros_analisis') }}" class="list-group-item list-group-item-action py-2" aria-current="true">
+            <i class="fas fa-home fa-fw me-3"></i><span>Otro</span>
+          </a>
+
+          <a href="{{ url_for('nuevo') }}" class="list-group-item list-group-item-action py-2" aria-current="true">
+            <i class="fas fa-home fa-fw me-3"></i><span>Otro</span>
+          </a>
+       
+          
+          
+          <!-- Aquí puedes añadir más enlaces a otras páginas -->
+        </div>
+      </div>
+    </nav>
+    <!-- Sidebar -->
+
+    <!-- Navbar -->
+    <nav id="main-navbar" class="navbar navbar-expand-lg navbar-light fixed-top" style="background-color: #0F6459;">
+    <!-- Container wrapper -->
+    <div class="container-fluid">
+      <!-- Toggle button -->
+      <button class="navbar-toggler" type="button" data-mdb-collapse-init data-mdb-target="#sidebarMenu"
+        aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <!-- Brand -->
+      <a class="navbar-brand" href="#">
+        <img src="{{ url_for('static', filename='img/ENVIBOL.png') }}" height="25" alt="" loading="lazy" />
+      </a>
+      <!-- Search form -->
+      
+        <!-- Puede añadir aquí su logotipo y otros elementos de navegación si es necesario -->
+        <div class="navbar-text">
+          ANALISIS DE ARCHIVOS EXCEL
+        </div>
+    
+
+      <!-- Right links -->
+      <ul class="navbar-nav ms-auto d-flex flex-row">
+        <!-- Notification dropdown -->
+        <li class="nav-item dropdown">
+          <a class="nav-link me-3 me-lg-0 dropdown-toggle hidden-arrow" href="#" id="navbarDropdownMenuLink"
+            role="button" data-mdb-dropdown-init aria-expanded="false">
+            <i class="fas fa-bell"></i>
+            <span class="badge rounded-pill badge-notification bg-danger">1</span>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
+            <li><a class="dropdown-item" href="#">Algunas notificaciones</a></li>
+            <li><a class="dropdown-item" href="#">Otras</a></li>
+            <li>
+              <a class="dropdown-item" href="#">Algo mas</a>
+            </li>
+          </ul>
+        </li>
+
+        <!-- Icon -->
+        <li class="nav-item">
+          <a class="nav-link me-3 me-lg-0" href="#">
+            <i class="fas fa-fill-drip"></i>
+          </a>
+        </li>
+        <!-- Icon -->
+        <li class="nav-item me-3 me-lg-0">
+          <a class="nav-link" href="#">
+            <i class="fab fa-github"></i>
+          </a>
+        </li>
+
+        <!-- Icon dropdown -->
+        <li class="nav-item dropdown">
+          <a class="nav-link me-3 me-lg-0 dropdown-toggle hidden-arrow" href="#" id="navbarDropdown" role="button"
+            data-mdb-dropdown-init aria-expanded="false">
+            <i class="united kingdom flag m-0"></i>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+            <li>
+              <a class="dropdown-item" href="#"><i class="united kingdom flag"></i>Spanish
+                <i class="fa fa-check text-success ms-2"></i></a>
+            </li>
+            <li>
+              <hr class="dropdown-divider" />
+            </li>
+            <li>
+              <a class="dropdown-item" href="#"><i class="poland flag"></i>Polski</a>
+            </li>
+            
+          </ul>
+        </li>
+
+        <!-- Avatar -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle hidden-arrow d-flex align-items-center" href="#"
+            id="navbarDropdownMenuLink" role="button" data-mdb-dropdown-init aria-expanded="false">
+            <img src="https://envibol.com/img/avatar.jpg" class="rounded-circle" height="22"
+              alt="" loading="lazy" />
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
+            <li><a class="dropdown-item" href="#">Perfil</a></li>
+            <li><a class="dropdown-item" href="#">Ajustes</a></li>
+            <li><a class="dropdown-item" href="#">Salir</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <!-- Container wrapper -->
+  </nav>
+    <!-- Navbar -->
+  </header>
+  <!--Main Navigation-->
+
+  <main style="margin-top: 58px">
+    <div class="container pt-4">
+      {% block content %}
+      <!-- El contenido específico de cada página reemplazará este bloque -->
+      {% endblock %}
+    </div>
+  </main>
+
+  <!-- MDB -->
+  <script type="text/javascript" src="{{ url_for('static', filename='js/mdb.umd.min.js') }}"></script>
+  
+  <!-- Custom scripts -->
+  <script type="text/javascript" src="{{ url_for('static', filename='js/admin.js') }}"></script>
+</body>
+
+</html>

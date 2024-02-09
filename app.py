@@ -101,8 +101,21 @@ def process_transformed_file(directory):
     combined_df.to_excel(output_file_path, index=False)
     return output_file_path
 
-@app.route('/', methods=['GET', 'POST'])
-def index():
+# RUTAS
+@app.route('/')
+def dashboard():
+    return render_template('dashboard.html')
+
+@app.route('/otros-analisis')
+def otros_analisis():
+    return render_template('otros_analisis.html')
+
+@app.route('/nuevo')
+def nuevo():
+    return render_template('nuevo.html')
+
+@app.route('/transformacion', methods=['GET', 'POST'])
+def transformacion():
     error = None
     download_link = None
     processed_file_link = None
@@ -128,7 +141,8 @@ def index():
             except Exception as e:
                 error = str(e)
 
-    return render_template('index.html', download_link=download_link, processed_file_link=processed_file_link, error=error)
+    return render_template('transformacion.html', download_link=download_link, processed_file_link=processed_file_link, error=error)
 
 if __name__ == '__main__':
     app.run(debug=True)
+    # ... (tus importaciones y código existente)

@@ -1,0 +1,136 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard de Datos{% endblock %}
+
+{% block content %}
+<!-- Contenido del Dashboard -->
+<div class="container-fluid mt-3">
+  <!-- Fila de iconos interactivos -->
+  <div class="row text-center">
+    <!-- Ejemplo de un icono para Estadísticas -->
+    <div class="col-md-4 mb-4">
+      <div class="icon-container" onclick="window.location.href='/estadisticas'">
+        <img src="{{ url_for('static', filename='/img/statidddds.png') }}" alt="Estadísticas" class="img-fluid">
+        <h4>Estadísticas</h4>
+      </div>
+    </div>
+    <!-- Ejemplo de un icono para Machine Learning -->
+    <div class="col-md-4 mb-4">
+      <div class="icon-container" onclick="window.location.href='/machine-learning'">
+        <i class="fas fa-robot fa-3x"></i>
+        <h4>Machine Learning</h4>
+      </div>
+    </div>
+    <!-- Ejemplo de un icono para Data Mining -->
+    <div class="col-md-4 mb-4">
+      <div class="icon-container" onclick="window.location.href='/data-mining'">
+        <i class="fas fa-database fa-3x"></i>
+        <h4>Data Mining</h4>
+      </div>
+    </div>
+  </div>
+
+  <!-- Más secciones para datos o visualizaciones -->
+  <div class="container-fluid">
+    <!-- Título del Dashboard -->
+    <div class="row mb-4">
+      <div class="col">
+        <h2 class="text-center">Datos</h2>
+      </div>
+    </div>
+  
+    <!-- Fila de Botones para acciones -->
+    <div class="row mb-4">
+      <div class="col text-center">
+        <button class="btn btn-primary m-1">Acción 1</button>
+        <button class="btn btn-secondary m-1">Acción 2</button>
+        <!-- Más botones según sea necesario -->
+      </div>
+    </div>
+  
+    <!-- Fila para Gráficos -->
+    <div class="row">
+      <div class="col-lg-6 mb-4">
+        <!-- Gráfico 1 -->
+        <div class="card">
+          <div class="card-body">
+            <canvas id="grafico1"></canvas>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 mb-4">
+        <!-- Gráfico 2 -->
+        <div class="card">
+          <div class="card-body">
+            <canvas id="grafico2"></canvas>
+          </div>
+        </div>
+      </div>
+      <!-- Más gráficos según sea necesario -->
+    </div>
+  
+    <!-- Más secciones para datos o visualizaciones -->
+  </div>
+
+
+</div>
+
+<script>
+    // Ejemplo de cómo generar un gráfico con Chart.js
+    var ctx1 = document.getElementById('grafico1').getContext('2d');
+    var myChart1 = new Chart(ctx1, {
+      type: 'bar', // Tipo de gráfico: barra, línea, pastel, etc.
+      data: {
+        labels: ['Ejemplo 1', 'Ejemplo 2', 'Ejemplo 3'],
+        datasets: [{
+          label: '# de Datos',
+          data: [12, 19, 3],
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(255, 206, 86, 0.2)'
+          ],
+          borderColor: [
+            'rgba(255, 99, 132, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)'
+          ],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  
+    // Repetir para otros gráficos
+  </script>
+
+{% endblock %}
+{% block additional_css %}
+<style>
+  .dashboard-icon {
+    cursor: pointer;
+    padding: 20px;
+    transition: transform 0.3s;
+  }
+  
+  .dashboard-icon:hover {
+    transform: translateY(-5px);
+  }
+
+  .icon-image {
+    height: 100px; /* Ajusta este valor según sea necesario */
+    width: auto;
+    margin-bottom: 15px;
+  }
+</style>
+
+
+
+
+{% endblock %}
